@@ -1,0 +1,149 @@
+*{
+    /*清除所有标签默认的外边距和内边距*/
+    margin:0;
+    padding: 0;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(230, 240, 255);
+}
+.box1{
+    background-color:rgb(227, 239, 250);
+    height: 120px;
+    text-align:center;
+}
+.box2{
+    font-family: Rockwell;
+    font-size: 65px;
+}
+.box3{
+    font-family:"楷体";
+    font-size: 23px;
+    font-weight: 550;
+}
+.box4{
+    width:50%;
+    height: 35%;
+    text-align: center;
+    margin: 0 auto;
+    border: 2px solid white;
+    box-sizing: border-box;
+    border-radius: 40px;
+    font-size: 23px;
+    font-family: "楷体";
+    font-weight: 900;
+}
+.box5{
+    padding: 12px 0px;
+}
+#newitem{
+    width: 50%;
+    height: 35px;
+    border-radius: 40px;
+    border: 2px solid white;
+    font-size: 23px;
+    font-family: "楷体";
+    outline:medium;
+    border: none;
+}
+#submit{
+    width: 10%;
+    height: 38px;
+    background-color:rgb(206, 235, 248);
+    border: 1.5px solid white;
+    border-radius: 30px;
+    font-family: "楷体";
+    font-size: 22px;
+    font-weight: 900;
+    color:rgb(68, 66, 66);
+    outline:medium;
+}
+.box5 button:hover{
+    box-shadow: 0 0 10px gray;
+    cursor: pointer;
+    transform: scale(1.05);
+} 
+.items{
+    width: 45%;
+    margin: 0 auto;
+    font-size: 23px;
+    font-family: "楷体";
+    font-weight: 900;
+}
+.todo{
+    padding:15px 25px;
+    margin: 0 auto;
+}
+.done{
+    padding:15px 25px;
+    margin: 0 auto;
+}
+ul{
+    padding: 15px 25px;
+    font-size: 23px;
+    font-family: "楷体";
+    font-weight: 900;
+    list-style: none;
+}
+.todo button{
+    width: 70px;
+    height: 33px;
+    border: 1.5px solid white;
+    border-radius: 30px;
+    background-color: rgb(206, 235, 248);
+    float: right;
+    margin:12px 10px 0px 10px; 
+    font-family: "楷体";
+    font-size: 20px;
+    font-weight: 900;
+    color:rgb(68, 66, 66);
+    outline:medium;
+}
+ul li{
+    padding: 9px 
+}
+.todo button:hover{
+    box-shadow: 0 0 10px rgb(145, 143, 143);
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+ul input[type=checkbox]{
+    width: 23.5px;
+    height:23.5px;
+    margin: 12px 10px 0px 10px;
+    background: #fff ;
+    -webkit-appearance: none;
+    outline:medium;
+    border-radius: 30px;
+    border:1.5px solid rgb(226, 232, 241) ;
+}
+
+ul input[type=checkbox]:checked{
+    background:url(images/checkbox.png);
+}
+
+ul input[type=checkbox]:hover{
+    cursor: pointer;
+}
+
+ul input[type=text]{
+    outline:medium;
+    width: 60%;
+    background-color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 23px;
+    font-family: "楷体";
+    font-weight: 900;
+}
+
+#deleteAll{
+    width: 100px;
+    height: 36px;
+    margin: 0px 40px;
+}
+h4{
+    margin: 5px 0px 0px 0px;
+}
