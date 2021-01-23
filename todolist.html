@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <link rel="stylesheet" type="text/css" href="todolist.css">
+</head>
+<body>
+    <div class="box1">
+        <div class="box2">ToDoList</div>
+        <div class="box3">你的待办事项表</div>
+    </div>
+    <div class="box4">
+        <div class="box5">
+            请输入你的待办事项：<input type="text" name="thing" id="newitem">
+            <button id="submit">提交</button>
+        </div>
+    </div>
+    <div class="items">
+        <div class="todo">
+            <h4>列表事项总数:
+                <span id="toDoNum">0</span>
+                <button id="deleteAll">清空列表</button>
+            </h4>
+            <div>
+                <ul class="list" id="todolist">
+                    <!--
+                        <li>待办事项</li>
+                    -->
+                </ul>
+            </div>
+        </div>    
+    </div>
+    
+    <script type="text/javascript" src="todolist.js"></script>
+    
+</body>
+</html>
