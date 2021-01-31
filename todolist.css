@@ -23,11 +23,10 @@ body{
     font-weight: 550;
 }
 .box4{
-    width:50%;
-    height: 35%;
+    width:100%;
+    height: 45%;
     text-align: center;
     margin: 0 auto;
-    border: 2px solid white;
     box-sizing: border-box;
     border-radius: 40px;
     font-size: 23px;
@@ -35,10 +34,10 @@ body{
     font-weight: 900;
 }
 .box5{
-    padding: 12px 0px;
+    padding:12px 0px 2px 0px;
 }
 #newitem{
-    width: 50%;
+    width: 70%;
     height: 35px;
     border-radius: 40px;
     border: 2px solid white;
@@ -46,10 +45,11 @@ body{
     font-family: "楷体";
     outline:medium;
     border: none;
+	margin: 10px 0px;
 }
 #submit{
-    width: 10%;
-    height: 38px;
+    width: 5.5%;
+	height:100%;
     background-color:rgb(206, 235, 248);
     border: 1.5px solid white;
     border-radius: 30px;
@@ -65,22 +65,23 @@ body{
     transform: scale(1.05);
 } 
 .items{
-    width: 45%;
+    width: 65%;
     margin: 0 auto;
     font-size: 23px;
     font-family: "楷体";
     font-weight: 900;
 }
 .todo{
-    padding:15px 25px;
+    padding:0px 10px;
     margin: 0 auto;
+	width: 100%;
 }
 .done{
     padding:15px 25px;
     margin: 0 auto;
 }
 ul{
-    padding: 15px 25px;
+    padding: 15px 20px;
     font-size: 23px;
     font-family: "楷体";
     font-weight: 900;
@@ -88,7 +89,7 @@ ul{
 }
 .todo button{
     width: 70px;
-    height: 33px;
+    height: 31px;
     border: 1.5px solid white;
     border-radius: 30px;
     background-color: rgb(206, 235, 248);
@@ -101,7 +102,7 @@ ul{
     outline:medium;
 }
 ul li{
-    padding: 9px 
+    padding: 13px 0px;
 }
 .todo button:hover{
     box-shadow: 0 0 10px rgb(145, 143, 143);
@@ -118,10 +119,6 @@ ul input[type=checkbox]{
     outline:medium;
     border-radius: 30px;
     border:1.5px solid rgb(226, 232, 241) ;
-}
-
-ul input[type=checkbox]:checked{
-    background:url(images/checkbox.png);
 }
 
 ul input[type=checkbox]:hover{
@@ -145,5 +142,37 @@ ul input[type=text]{
     margin: 0px 40px;
 }
 h4{
-    margin: 5px 0px 0px 0px;
+    padding: 6px 0px 0px 0px;
+}
+.tip{
+	font-size: 23px;
+	font-family: "楷体";
+	font-weight: 900;
+	color: gray;
+	text-align: center;
+	padding: 25px 0px 0px 0px;
+}
+.finished label{
+	color:#939393;
+	text-decoration:line-through;
+	font-style:oblique;
+}
+.finished input[type=checkbox]{
+	background:url(images/checkbox.png);
+}
+/*用户未按下按钮时输入框不显示*/
+.todolist li .changeText{
+	display:none;
+}
+/*用户未按下按钮时除输入框和保存及取消按钮以外，其他元素都显示*/
+.todolist li .visible{
+	display:inline;
+}
+/*用户按下修改按钮后才会显示输入框和保存及取消按钮*/
+.todolist li .change .changeText{
+	display:inline;
+}
+/*除输入框和保存及取消按钮以外，其他元素都隐藏*/
+.todolist li .change .visible{
+	display:none;
 }
