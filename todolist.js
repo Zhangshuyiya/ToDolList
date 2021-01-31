@@ -1,88 +1,86 @@
-    let toDoNum=document.getElementById('toDoNum');
-    let newitem=document.getElementById('newitem');
-
-    //修改li标签的信息
-    function changeMes(lab, chagBtn,delBtn){
-        let con=lab.innerHTML; //保存label标签原先的内容
-
-        //在label标签中添加input输入框和相应按钮
-        lab.innerHTML="<label><input type='text' id='inp'><button id='cancel'>取消</button><button id='store'>保存</button></label>" 
-            
-        //当用户点击保存按钮时
-        document.getElementById("store").addEventListener("click", function(){
-            let input=document.getElementById("inp");
-            if (input.value==""){
-                window.alert("内容不能为空！");
-                lab.innerHTML=con; //将label标签的内容恢复为原来的内容
-            }
-            else{
-                lab.innerHTML=input.value; //将label标签的内容设置为用户修改的内容
-            }
-            chagBtn.style.display="block"; //显示修改和删除按钮
-            delBtn.style.display="block";
-        });
-            
-        //当用户点击取消按钮时
-        document.getElementById("cancel").addEventListener("click", function(){
-            lab.innerHTML=con; //将label标签的内容恢复为原来的内容
-            chagBtn.style.display="block";
-            delBtn.style.display="block";
-        });
-    }
-    
-        //添加新标签
-    function addNewItem(){
-
-        //向列表中添加新的li标签
-        let temp=document.createElement("li");
-        let element=document.getElementById("todolist");
-        element.appendChild(temp);
-
-        //向新的li标签中添加复选框
-        let block=document.createElement("input");
-        block.type="checkbox"; //复选框
-        element.lastChild.appendChild(block);
-        
-        //向新的li标签中添加label标签
-        let lab=document.createElement("label");
-        lab.appendChild(document.createTextNode(newitem.value));
-        element.lastChild.appendChild(lab);
-
-        //向新的li标签中添加修改按钮
-        let chagBtn=document.createElement("button");
-        chagBtn.appendChild(document.createTextNode("修改"));
-        element.lastChild.appendChild(chagBtn);
-        chagBtn.onclick=function(){
-            chagBtn.style.display="none"; //隐藏修改和删除按钮
-            delBtn.style.display="none";
-            changeMes(lab,chagBtn,delBtn); //修改label标签的信息
-        }
-
-        //向新的li标签中添加删除按钮
-        let delBtn=document.createElement("button");
-        delBtn.appendChild(document.createTextNode("删除"));
-        element.lastChild.appendChild(delBtn);
-        delBtn.onclick=function(){
-            delBtn.parentNode.parentNode.removeChild(delBtn.parentNode);
-            toDoNum.innerHTML=Number(toDoNum.innerHTML)-1; //事项总数减一
-        }
-    }
-
-    //当用户点击提交按钮时
-    document.getElementById('submit').onclick=function(){
-        if (newitem.value=="")
-            window.alert("内容不能为空！");
-        else{
-            //将新结点加入未完成列表中
-            addNewItem();
-            newitem.value=""; //将输入框中的内容置空
-            toDoNum.innerHTML=Number(toDoNum.innerHTML)+1; //事项总数加一
-        }
-    }
-
-    //当用户点击清空列表按钮时
-    document.getElementById('deleteAll').onclick=function(){
-        let list=document.getElementById('todolist');
-        list.innerHTML="";  //将ul列表的内容清空
-        toDoNum.innerHTML=0; //事项总数清零
-    }
+//存取localStorage中的数据
+			var store={
+			    save(key,value){
+			        window.localStorage.setItem(key,JSON.stringify(value));
+			    },
+			    fetch(key){
+			     return JSON.parse(window.localStorage.getItem(key))||[];
+			    }
+			}
+			//list存放列表中取出的所有的值
+			var list = store.fetch("storeData");
+		
+			var app=new Vue({
+				el:'#app',
+				data:{
+					list,
+					item:"",
+					changeItem:"", //修改后的事项
+					beforeData:"" //修改前的事项的数据
+				},
+				watch:{
+				//监控list这个属性，当这个属性对应的值发生变化就会执行函数，及时更新数据并保存
+				    list:{
+				        handler:function(){
+				            store.save("storeData",this.list);
+				        },
+				        deep:true
+				    }
+							 
+				},
+				methods:{
+					//添加新事项
+					addNewItem: function(){
+						if (this.item=="")
+							window.alert("输入内容不能为空！")
+						else{
+							let newItem={itemValue:this.item,isFinished:false}
+							this.list.push(newItem); 
+							this.item=""; //清空输入框中的内容
+						}
+					},
+					//删除列表事项
+					deleteItem: function(item){
+						let index = this.list.indexOf(item);
+						this.list.splice(index,1)
+					},
+					//修改事项状态(是否完成)
+					changeState: function(item){
+						let temp=item.isFinished;
+						item.isFinished=!temp; //改变事项的完成状态
+					},
+					//清空列表
+					deleteAll: function(){
+						//删除起始坐标为0，长度为this.list.length个元素
+						this.list.splice(0,this.list.length);
+					},
+					//修改事项内容
+					changeMes: function(item){
+						//保存之前的事项内容
+						this.beforeData=item.itemValue;
+						item.itemValue="";
+						this.changeItem=item;
+					},
+					//取消修改事项内容
+					cancelCha: function(item){
+						item.itemValue=this.beforeData;
+						this.beforeData="";
+						this.changeItem="";
+					},
+					//保存事项内容
+					storeCha: function(item){
+						//用户输入内容为空
+						if (item.itemValue=="")
+							window.alert("输入内容不能为空！")
+						else
+							this.changeItem="";
+					}
+				},
+				computed:{
+					unfinishedNum(){ //计算未完成事项总数
+						return this.list.filter(item=>{
+							return !item.isFinished;
+						}).length;
+					}
+				}
+			})
